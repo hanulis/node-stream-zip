@@ -46,6 +46,7 @@ declare namespace StreamZip {
          * file name
          */
         name: string;
+        decodedName: string;
 
         /**
          * true if it's a directory entry
