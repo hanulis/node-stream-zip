@@ -344,7 +344,8 @@ const StreamZip = function (config) {
                     op.move = true;
                     return;
                 }
-                entry.read(buffer, bufferPos, textDecoder);
+                // entry.read(buffer, bufferPos, textDecoder);
+                entry.read(buffer, bufferPos, null);
                 if (!config.skipEntryNameValidation) {
                     entry.validateName();
                 }
@@ -880,7 +881,8 @@ class ZipEntry {
 
     read(data, offset, textDecoder) {
         const nameData = data.slice(offset, (offset += this.fnameLen));
-        this.name = textDecoder
+        this.name = nameData.toString('utf8');
+        this.decodedName = textDecoder
             ? textDecoder.decode(new Uint8Array(nameData))
             : nameData.toString('utf8');
         const lastChar = data[offset - 1];
