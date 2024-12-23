@@ -345,7 +345,7 @@ const StreamZip = function (config) {
                     return;
                 }
                 // entry.read(buffer, bufferPos, textDecoder);
-                entry.read(buffer, bufferPos, null);
+                entry.read(buffer, bufferPos, textDecoder);
                 if (!config.skipEntryNameValidation) {
                     entry.validateName();
                 }
